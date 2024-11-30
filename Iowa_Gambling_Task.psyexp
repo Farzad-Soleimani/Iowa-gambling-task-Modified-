@@ -70,7 +70,7 @@
     <Param val="1000" valType="num" updates="None" name="plPupilRemoteTimeoutMs"/>
     <Param val="False" valType="bool" updates="None" name="plPupillometryOnly"/>
     <Param val="psychopy_iohub_surface" valType="str" updates="None" name="plSurfaceName"/>
-    <Param val="0" valType="code" updates="None" name="runMode"/>
+    <Param val="1" valType="code" updates="None" name="runMode"/>
     <Param val="False" valType="bool" updates="None" name="rush"/>
     <Param val="time" valType="str" updates="None" name="sortColumns"/>
     <Param val="" valType="str" updates="None" name="tbLicenseFile"/>
@@ -120,7 +120,7 @@
       <CodeComponent name="Initialization" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="import random&amp;#10;&amp;#10;# Begin Experiment&amp;#10;net_worth = 2000&amp;#10;net_worth_practice = 2000&amp;#10;feedback_text = &quot;&quot;&amp;#10;final_message_text = &quot;&quot;&amp;#10;feedback_text_2 = &quot;&quot;&amp;#10;&amp;#10;&amp;#10;def simulateOutcome(chosen_deck, conditions):&amp;#10;    deck_data = conditions[chosen_deck]  # Access reward and penalty from conditions&amp;#10;    reward, penalty = deck_data['Reward'], deck_data['Penalty']&amp;#10;&amp;#10;    if random.random() &lt; 0.5:  # Assuming 50% chance to win/lose for demonstration&amp;#10;        return reward&amp;#10;    else:&amp;#10;        return penalty&amp;#10;&amp;#10;deck_positions = [(-0.5, 0), (-0.17, 0), (0.17, 0), (0.5, 0)]&amp;#10;arrow_offset_y = 0.2  # Adjust this value to move the arrow higher&amp;#10;current_position = random.randint(0, len(deck_positions) - 1)" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="import random&amp;#10;&amp;#10;# Begin Experiment&amp;#10;net_worth = 2000&amp;#10;net_worth_practice = 2000&amp;#10;feedback_text = &quot;&quot;&amp;#10;final_message_text = &quot;&quot;&amp;#10;feedback_text_2 = &quot;&quot;&amp;#10;info_text = &quot;&quot;&amp;#10;practice_info_text = &quot;&quot;&amp;#10;&amp;#10;&amp;#10;def simulateOutcome(chosen_deck, conditions):&amp;#10;    deck_data = conditions[chosen_deck]  # Access reward and penalty from conditions&amp;#10;    reward, penalty = deck_data['Reward'], deck_data['Penalty']&amp;#10;&amp;#10;    if random.random() &lt; 0.5:  # Assuming 50% chance to win/lose for demonstration&amp;#10;        return reward&amp;#10;    else:&amp;#10;        return penalty&amp;#10;&amp;#10;deck_positions = [(-0.5, 0), (-0.17, 0), (0.17, 0), (0.5, 0)]&amp;#10;arrow_offset_y = 0.2  # Adjust this value to move the arrow higher&amp;#10;current_position = random.randint(0, len(deck_positions) - 1)&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
@@ -215,73 +215,6 @@
         <Param val="linear" valType="str" updates="constant" name="interpolate"/>
         <Param val="" valType="str" updates="constant" name="mask"/>
         <Param val="practice_instruction_image" valType="code" updates="None" name="name"/>
-        <Param val="" valType="num" updates="constant" name="opacity"/>
-        <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="(1.645, 1.029)" valType="list" updates="constant" name="size"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="128" valType="num" updates="constant" name="texture resolution"/>
-        <Param val="from exp settings" valType="str" updates="None" name="units"/>
-        <Param val="" valType="code" updates="None" name="validator"/>
-      </ImageComponent>
-    </Routine>
-    <Routine name="Instruction_2">
-      <RoutineSettingsComponent name="Instruction_2" plugin="None">
-        <Param val="none" valType="str" updates="None" name="backgroundFit"/>
-        <Param val="" valType="str" updates="None" name="backgroundImg"/>
-        <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
-        <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
-        <Param val="" valType="str" updates="constant" name="desc"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
-        <Param val="Instruction_2" valType="code" updates="None" name="name"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="constant" name="skipIf"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
-      </RoutineSettingsComponent>
-      <KeyboardComponent name="key_resp_2" plugin="None">
-        <Param val="'space'" valType="list" updates="constant" name="allowedKeys"/>
-        <Param val="" valType="str" updates="constant" name="correctAns"/>
-        <Param val="" valType="str" updates="None" name="deviceLabel"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="True" valType="bool" updates="constant" name="discard previous"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="True" valType="bool" updates="constant" name="forceEndRoutine"/>
-        <Param val="key_resp_2" valType="code" updates="None" name="name"/>
-        <Param val="press" valType="str" updates="constant" name="registerOn"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
-        <Param val="" valType="code" updates="None" name="startEstim"/>
-        <Param val="time (s)" valType="str" updates="None" name="startType"/>
-        <Param val="0.0" valType="code" updates="None" name="startVal"/>
-        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="last key" valType="str" updates="constant" name="store"/>
-        <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
-        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
-      </KeyboardComponent>
-      <ImageComponent name="instruction_2_image" plugin="None">
-        <Param val="center" valType="str" updates="constant" name="anchor"/>
-        <Param val="$[1,1,1]" valType="color" updates="constant" name="color"/>
-        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
-        <Param val="1" valType="num" updates="constant" name="contrast"/>
-        <Param val="False" valType="bool" updates="None" name="disabled"/>
-        <Param val="False" valType="code" updates="constant" name="draggable"/>
-        <Param val="" valType="code" updates="None" name="durationEstim"/>
-        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
-        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
-        <Param val="Instruction_2.jpg" valType="file" updates="constant" name="image"/>
-        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
-        <Param val="" valType="str" updates="constant" name="mask"/>
-        <Param val="instruction_2_image" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
@@ -500,20 +433,114 @@
       <CodeComponent name="code_2" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="net_worth = 2000&amp;#10;previous_choice = 'None'&amp;#10;previous_outcome = 0&amp;#10;&amp;#10;# Prepare to store data&amp;#10;choices = []&amp;#10;outcomes = []&amp;#10;net_worths = []&amp;#10;&amp;#10;def log_data(trial_type, choice, outcome, net_worth):&amp;#10;    choices.append(choice)&amp;#10;    outcomes.append(outcome)&amp;#10;    net_worths.append(net_worth)&amp;#10;    thisExp.addData('trialType', trial_type)&amp;#10;    thisExp.addData('choice', choice)&amp;#10;    thisExp.addData('outcome', outcome)&amp;#10;    thisExp.addData('net_worth', net_worth)&amp;#10;    thisExp.nextEntry()  # Ensure data is logged correctly&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="if practice_completed:&amp;#10;    print(f&quot;Before Main Task: Net Worth is {net_worth}&quot;)&amp;#10;    practice_completed = False  # Reset the flag&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="if practice_completed:&amp;#10;    print(f&quot;Before Main Task: Net Worth is {net_worth}&quot;)&amp;#10;    practice_completed = False  # Reset the flag&amp;#10;&amp;#10;# Update the display text to show current total and previous choice&amp;#10;info_text = f&quot;جمع پول شما: {(net_worth)}\n\nانتخاب قبلی شما: {(previous_outcome)}&quot;&amp;#10;info_display.setText(info_text)  # Update the text component with info_text&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="conditions = {&amp;#10;    'deck_a': {'Reward': 100, 'Penalty': -250},&amp;#10;    'deck_b': {'Reward': 100, 'Penalty': -1150},&amp;#10;    'deck_c': {'Reward': 50, 'Penalty': -25},&amp;#10;    'deck_d': {'Reward': 50, 'Penalty': -200},&amp;#10;}&amp;#10;&amp;#10;def to_persian_number(number):&amp;#10;    english_to_persian = {&amp;#10;        '0': '۰', '1': '۱', '2': '۲', '3': '۳', '4': '۴',&amp;#10;        '5': '۵', '6': '۶', '7': '۷', '8': '۸', '9': '۹'&amp;#10;    }&amp;#10;    &amp;#10;    number_str = str(abs(number))  # Convert number to string and ignore the sign for now&amp;#10;    persian_number = ''.join(english_to_persian.get(char, char) for char in number_str)&amp;#10;    &amp;#10;    # Add negative sign to the right side if the number is negative&amp;#10;    if number &lt; 0:&amp;#10;        persian_number += '−'&amp;#10;    &amp;#10;    return persian_number&amp;#10;&amp;#10;if response_key.keys:&amp;#10;    if 'f' in response_key.keys:&amp;#10;        chosen_action = 'deck_' + chr(97 + current_position)  # Dynamically select the deck based on arrow position&amp;#10;        outcome = simulateOutcome(chosen_action, conditions)&amp;#10;        net_worth += outcome&amp;#10;        feedback_text = f&quot;شما بازی کردید\n\n نتیجه:  {to_persian_number(outcome)}\n\n  جمع پول شما اکنون:  {to_persian_number(net_worth)}&quot;&amp;#10;    elif 'j' in response_key.keys:&amp;#10;        chosen_action = 'pass'&amp;#10;        feedback_text = f&quot;شما گذشتید\n\n  جمع پول شما اکنون:  {to_persian_number(net_worth)}&quot;&amp;#10;&amp;#10;    feedback_display.setText(feedback_text)  # Update the text component with feedback_text&amp;#10;&amp;#10;    # Randomly move the arrow to a new position for the next trial&amp;#10;    current_position = random.randint(0, len(deck_positions) - 1)&amp;#10;    &amp;#10;    continueRoutine = False  # End the routine after making a choice&amp;#10;" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="conditions = {&amp;#10;    'deck_a': {'Reward': 100, 'Penalty': -250},&amp;#10;    'deck_b': {'Reward': 100, 'Penalty': -1150},&amp;#10;    'deck_c': {'Reward': 50, 'Penalty': -25},&amp;#10;    'deck_d': {'Reward': 50, 'Penalty': -200},&amp;#10;}&amp;#10;&amp;#10;def to_persian_number(number):&amp;#10;    english_to_persian = {&amp;#10;        '0': '۰', '1': '۱', '2': '۲', '3': '۳', '4': '۴',&amp;#10;        '5': '۵', '6': '۶', '7': '۷', '8': '۸', '9': '۹'&amp;#10;    }&amp;#10;    &amp;#10;    number_str = str(abs(number))  # Convert number to string and ignore the sign for now&amp;#10;    persian_number = ''.join(english_to_persian.get(char, char) for char in number_str)&amp;#10;    &amp;#10;    # Add negative sign to the right side if the number is negative&amp;#10;    if number &lt; 0:&amp;#10;        persian_number += '−'&amp;#10;    &amp;#10;    return persian_number&amp;#10;&amp;#10;if response_key.keys:&amp;#10;    if 'f' in response_key.keys:&amp;#10;        chosen_action = 'deck_' + chr(97 + current_position)  # Dynamically select the deck based on arrow position&amp;#10;        outcome = simulateOutcome(chosen_action, conditions)&amp;#10;        net_worth += outcome&amp;#10;        previous_choice = chosen_action&amp;#10;        previous_outcome = outcome&amp;#10;        log_data('main', chosen_action, outcome, net_worth)&amp;#10;        feedback_text = f&quot;شما بازی کردید\n\n نتیجه:  {(outcome)}\n\n  جمع پول شما اکنون:  {(net_worth)}&quot;&amp;#10;    elif 'j' in response_key.keys:&amp;#10;        chosen_action = 'pass'&amp;#10;        previous_choice = chosen_action &amp;#10;        previous_outcome = 0&amp;#10;        log_data('main', chosen_action, 0, net_worth)&amp;#10;        feedback_text = f&quot;شما بازی نکردید\n\n  جمع پول شما اکنون:  {(net_worth)}&quot;&amp;#10;&amp;#10;    feedback_display.setText(feedback_text)  # Update the text component with feedback_text&amp;#10;&amp;#10;    # Randomly move the arrow to a new position for the next trial&amp;#10;    current_position = random.randint(0, len(deck_positions) - 1)&amp;#10;    &amp;#10;    continueRoutine = False  # End the routine after making a choice&amp;#10;" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="code_2" valType="code" updates="None" name="name"/>
       </CodeComponent>
+      <TextComponent name="info_display" plugin="None">
+        <Param val="white" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="code" updates="constant" name="draggable"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="Arabic" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="info_display" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, -0.35)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="$info_text" valType="str" updates="constant" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="Instruction_2">
+      <RoutineSettingsComponent name="Instruction_2" plugin="None">
+        <Param val="none" valType="str" updates="None" name="backgroundFit"/>
+        <Param val="" valType="str" updates="None" name="backgroundImg"/>
+        <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
+        <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
+        <Param val="" valType="str" updates="constant" name="desc"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="code" updates="None" name="forceNonSlip"/>
+        <Param val="Instruction_2" valType="code" updates="None" name="name"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="constant" name="skipIf"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="False" valType="bool" updates="None" name="useWindowParams"/>
+      </RoutineSettingsComponent>
+      <KeyboardComponent name="key_resp_2" plugin="None">
+        <Param val="'space'" valType="list" updates="constant" name="allowedKeys"/>
+        <Param val="" valType="str" updates="constant" name="correctAns"/>
+        <Param val="" valType="str" updates="None" name="deviceLabel"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="True" valType="bool" updates="constant" name="discard previous"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="True" valType="bool" updates="constant" name="forceEndRoutine"/>
+        <Param val="key_resp_2" valType="code" updates="None" name="name"/>
+        <Param val="press" valType="str" updates="constant" name="registerOn"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="last key" valType="str" updates="constant" name="store"/>
+        <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
+        <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
+      </KeyboardComponent>
+      <ImageComponent name="instruction_2_image" plugin="None">
+        <Param val="center" valType="str" updates="constant" name="anchor"/>
+        <Param val="$[1,1,1]" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="code" updates="constant" name="draggable"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="False" valType="bool" updates="constant" name="flipHoriz"/>
+        <Param val="False" valType="bool" updates="constant" name="flipVert"/>
+        <Param val="Instruction_2.jpg" valType="file" updates="constant" name="image"/>
+        <Param val="linear" valType="str" updates="constant" name="interpolate"/>
+        <Param val="" valType="str" updates="constant" name="mask"/>
+        <Param val="instruction_2_image" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="(1.645, 1.029)" valType="list" updates="constant" name="size"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="128" valType="num" updates="constant" name="texture resolution"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+      </ImageComponent>
     </Routine>
     <Routine name="Feedback">
       <RoutineSettingsComponent name="Feedback" plugin="None">
@@ -552,7 +579,7 @@
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="2" valType="code" updates="constant" name="stopVal"/>
+        <Param val="1" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="$feedback_text" valType="str" updates="set every repeat" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
@@ -610,7 +637,7 @@
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="final_message_text =f&quot;پایان بازی\n\n مبلغ نهایی شما:{to_persian_number(net_worth)} \n\n Parinaz Khosravani \n Farzad Soleimani \n\n برای خروج کلید Esc را فشار دهید.&quot;&amp;#10;final_message.setText(final_message_text)" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="final_message_text =f&quot;پایان بازی\n\n مبلغ نهایی شما:{(net_worth)} \n\nپژوهشگران:\n Parinaz Khosravani \n Farzad Soleimani \n\n برای خروج کلید Esc را فشار دهید.&quot;&amp;#10;final_message.setText(final_message_text)" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -891,12 +918,12 @@
       <CodeComponent name="code_3" plugin="None">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="net_worth_practice = 2000  # Initialize net worth for practice&amp;#10;practice_completed = False  # Flag to check if practice is completed&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="net_worth_practice = 2000  # Initialize net worth for practice&amp;#10;practice_completed = False  # Flag to check if practice is completed&amp;#10;previous_outcome_practice = 0" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="# This code runs once at the beginning of the routine&amp;#10;feedback_text_2 = ''&amp;#10;if 'net_worth_practice' not in globals():&amp;#10;    net_worth_practice = 2000  # Initialize net worth for practice only once&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="# This code runs once at the beginning of the routine&amp;#10;feedback_text_2 = ''&amp;#10;&amp;#10;# Update the display text to show current total and previous choice for practice&amp;#10;practice_info_text = f&quot;جمع پول شما: {(net_worth_practice)}\n\nانتخاب قبلی شما: {(previous_outcome_practice)}&quot;&amp;#10;practice_info_display.setText(practice_info_text)  # Update the text component with info_text_practice&amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Py" valType="str" updates="None" name="Code Type"/>
-        <Param val="conditions = {&amp;#10;    'deck_a_2': {'Reward': 100, 'Penalty': -250},&amp;#10;    'deck_b_2': {'Reward': 100, 'Penalty': -1150},&amp;#10;    'deck_c_2': {'Reward': 50, 'Penalty': -25},&amp;#10;    'deck_d_2': {'Reward': 50, 'Penalty': -200},&amp;#10;}&amp;#10;def to_persian_number(number):&amp;#10;    english_to_persian = {&amp;#10;        '0': '۰', '1': '۱', '2': '۲', '3': '۳', '4': '۴',&amp;#10;        '5': '۵', '6': '۶', '7': '۷', '8': '۸', '9': '۹'&amp;#10;    }&amp;#10;&amp;#10;&amp;#10;if practice_response.keys:&amp;#10;    if 'f' in practice_response.keys:&amp;#10;        chosen_action = 'deck_' + chr(97 + current_position) + '_2'  # Dynamically select the deck based on arrow position&amp;#10;        print(f&quot;Chosen Action: {chosen_action}&quot;)&amp;#10;        outcome = simulateOutcome(chosen_action, conditions)&amp;#10;        print(f&quot;Outcome: {outcome}&quot;)&amp;#10;        net_worth_practice += outcome&amp;#10;        print(f&quot;Net Worth Practice: {net_worth_practice}&quot;)&amp;#10;        feedback_text_2 = f&quot;شما بازی کردید\n\n نتیجه:  {(outcome)}\n\n  جمع پول شما اکنون:  {(net_worth_practice)}&quot;&amp;#10;    elif 'j' in practice_response.keys:&amp;#10;        chosen_action = 'pass'&amp;#10;        feedback_text_2 = f&quot;شما گذشتید\n\n  جمع پول شما اکنون:  {(net_worth_practice)}&quot;&amp;#10;&amp;#10;    feedback_display_2.setText(feedback_text_2)  # Update the text component with feedback_text_2&amp;#10;    print(f&quot;Feedback Text: {feedback_text_2}&quot;)&amp;#10;&amp;#10;    # Randomly move the arrow to a new position for the next trial&amp;#10;    current_position = random.randint(0, len(deck_positions) - 1)&amp;#10;    &amp;#10;    continueRoutine = False  # End the routine after making a choice&amp;#10;&amp;#10;&amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="conditions = {&amp;#10;    'deck_a_2': {'Reward': 100, 'Penalty': -250},&amp;#10;    'deck_b_2': {'Reward': 100, 'Penalty': -1150},&amp;#10;    'deck_c_2': {'Reward': 50, 'Penalty': -25},&amp;#10;    'deck_d_2': {'Reward': 50, 'Penalty': -200},&amp;#10;}&amp;#10;def to_persian_number(number):&amp;#10;    english_to_persian = {&amp;#10;        '0': '۰', '1': '۱', '2': '۲', '3': '۳', '4': '۴',&amp;#10;        '5': '۵', '6': '۶', '7': '۷', '8': '۸', '9': '۹'&amp;#10;    }&amp;#10;&amp;#10;&amp;#10;if practice_response.keys:&amp;#10;    if 'f' in practice_response.keys:&amp;#10;        chosen_action = 'deck_' + chr(97 + current_position) + '_2'  # Dynamically select the deck based on arrow position&amp;#10;        print(f&quot;Chosen Action: {chosen_action}&quot;)&amp;#10;        outcome = simulateOutcome(chosen_action, conditions)&amp;#10;        print(f&quot;Outcome: {outcome}&quot;)&amp;#10;        net_worth_practice += outcome&amp;#10;        print(f&quot;Net Worth Practice: {net_worth_practice}&quot;)&amp;#10;        previous_choice_practice = chosen_action &amp;#10;        previous_outcome_practice = outcome&amp;#10;        feedback_text_2 = f&quot;شما بازی کردید\n\n نتیجه:  {(outcome)}\n\n  جمع پول شما اکنون:  {(net_worth_practice)}&quot;&amp;#10;    elif 'j' in practice_response.keys:&amp;#10;        chosen_action = 'pass'&amp;#10;        previous_choice_practice = chosen_action &amp;#10;        previous_outcome_practice = 0&amp;#10;        feedback_text_2 = f&quot;شما بازی نکردید\n\n  جمع پول شما اکنون:  {(net_worth_practice)}&quot;&amp;#10;&amp;#10;    feedback_display_2.setText(feedback_text_2)  # Update the text component with feedback_text_2&amp;#10;    print(f&quot;Feedback Text: {feedback_text_2}&quot;)&amp;#10;&amp;#10;    # Randomly move the arrow to a new position for the next trial&amp;#10;    current_position = random.randint(0, len(deck_positions) - 1)&amp;#10;    &amp;#10;    continueRoutine = False  # End the routine after making a choice&amp;#10;&amp;#10;&amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
@@ -905,6 +932,33 @@
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="code_3" valType="code" updates="None" name="name"/>
       </CodeComponent>
+      <TextComponent name="practice_info_display" plugin="None">
+        <Param val="white" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="False" valType="code" updates="constant" name="draggable"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Arial" valType="str" updates="constant" name="font"/>
+        <Param val="Arabic" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="practice_info_display" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0, -0.35)" valType="list" updates="constant" name="pos"/>
+        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="$practice_info_text" valType="str" updates="constant" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="code" updates="None" name="validator"/>
+        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
     </Routine>
     <Routine name="Feedback_2">
       <RoutineSettingsComponent name="Feedback_2" plugin="None">
@@ -943,7 +997,7 @@
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
-        <Param val="2" valType="code" updates="constant" name="stopVal"/>
+        <Param val="1" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
         <Param val="$feedback_text_2&amp;#10;&amp;#10;" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>

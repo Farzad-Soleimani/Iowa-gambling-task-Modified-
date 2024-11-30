@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2024.2.3),
-    on November 23, 2024, at 09:19
+    on November 30, 2024, at 16:29
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -126,7 +126,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version='',
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='C:\\Users\\SAM-Tech\\Desktop\\Iowa_Gambling_Task_Modified-main\\Iowa_Gambling_Task_lastrun.py',
+        originPath='C:\\Users\\SAM-Tech\\Desktop\\Iowa_Gambling_Task_Modified\\Iowa_Gambling_Task_lastrun.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -408,6 +408,8 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     feedback_text = ""
     final_message_text = ""
     feedback_text_2 = ""
+    info_text = ""
+    practice_info_text = ""
     
     
     def simulateOutcome(chosen_deck, conditions):
@@ -422,6 +424,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     deck_positions = [(-0.5, 0), (-0.17, 0), (0.17, 0), (0.5, 0)]
     arrow_offset_y = 0.2  # Adjust this value to move the arrow higher
     current_position = random.randint(0, len(deck_positions) - 1)
+    
     instruction_image = visual.ImageStim(
         win=win,
         name='instruction_image', 
@@ -505,7 +508,14 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # Run 'Begin Experiment' code from code_3
     net_worth_practice = 2000  # Initialize net worth for practice
     practice_completed = False  # Flag to check if practice is completed
-    
+    previous_outcome_practice = 0
+    practice_info_display = visual.TextStim(win=win, name='practice_info_display',
+        text=practice_info_text,
+        font='Arial',
+        pos=(0, -0.35), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        color='white', colorSpace='rgb', opacity=None, 
+        languageStyle='Arabic',
+        depth=-8.0);
     
     # --- Initialize components for Routine "Feedback_2" ---
     feedback_display_2 = visual.TextStim(win=win, name='feedback_display_2',
@@ -578,6 +588,33 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     
     response_key = keyboard.Keyboard(deviceName='response_key')
+    # Run 'Begin Experiment' code from code_2
+    net_worth = 2000
+    previous_choice = 'None'
+    previous_outcome = 0
+    
+    # Prepare to store data
+    choices = []
+    outcomes = []
+    net_worths = []
+    
+    def log_data(trial_type, choice, outcome, net_worth):
+        choices.append(choice)
+        outcomes.append(outcome)
+        net_worths.append(net_worth)
+        thisExp.addData('trialType', trial_type)
+        thisExp.addData('choice', choice)
+        thisExp.addData('outcome', outcome)
+        thisExp.addData('net_worth', net_worth)
+        thisExp.nextEntry()  # Ensure data is logged correctly
+    
+    info_display = visual.TextStim(win=win, name='info_display',
+        text=info_text,
+        font='Arial',
+        pos=(0, -0.35), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        color='white', colorSpace='rgb', opacity=None, 
+        languageStyle='Arabic',
+        depth=-8.0);
     
     # --- Initialize components for Routine "Feedback" ---
     feedback_display = visual.TextStim(win=win, name='feedback_display',
@@ -1084,7 +1121,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine practice_task
         practice_task = data.Routine(
             name='practice_task',
-            components=[deck_a_image_2, deck_b_image_2, deck_c_image_2, deck_d_image_2, arrow_image_2, practice_response],
+            components=[deck_a_image_2, deck_b_image_2, deck_c_image_2, deck_d_image_2, arrow_image_2, practice_response, practice_info_display],
         )
         practice_task.status = NOT_STARTED
         continueRoutine = True
@@ -1100,8 +1137,11 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # Run 'Begin Routine' code from code_3
         # This code runs once at the beginning of the routine
         feedback_text_2 = ''
-        if 'net_worth_practice' not in globals():
-            net_worth_practice = 2000  # Initialize net worth for practice only once
+        
+        # Update the display text to show current total and previous choice for practice
+        practice_info_text = f"جمع پول شما: {(net_worth_practice)}\n\nانتخاب قبلی شما: {(previous_outcome_practice)}"
+        practice_info_display.setText(practice_info_text)  # Update the text component with info_text_practice
+        
         
         # store start times for practice_task
         practice_task.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
@@ -1285,10 +1325,14 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     print(f"Outcome: {outcome}")
                     net_worth_practice += outcome
                     print(f"Net Worth Practice: {net_worth_practice}")
-                    feedback_text_2 = f"شما بازی کردید\n\n نتیجه:  {to_persian_number(outcome)}\n\n  جمع پول شما اکنون:  {to_persian_number(net_worth_practice)}"
+                    previous_choice_practice = chosen_action 
+                    previous_outcome_practice = outcome
+                    feedback_text_2 = f"شما بازی کردید\n\n نتیجه:  {(outcome)}\n\n  جمع پول شما اکنون:  {(net_worth_practice)}"
                 elif 'j' in practice_response.keys:
                     chosen_action = 'pass'
-                    feedback_text_2 = f"شما گذشتید\n\n  جمع پول شما اکنون:  {to_persian_number(net_worth_practice)}"
+                    previous_choice_practice = chosen_action 
+                    previous_outcome_practice = 0
+                    feedback_text_2 = f"شما بازی نکردید\n\n  جمع پول شما اکنون:  {(net_worth_practice)}"
             
                 feedback_display_2.setText(feedback_text_2)  # Update the text component with feedback_text_2
                 print(f"Feedback Text: {feedback_text_2}")
@@ -1301,6 +1345,26 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             
             
             
+            
+            # *practice_info_display* updates
+            
+            # if practice_info_display is starting this frame...
+            if practice_info_display.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                practice_info_display.frameNStart = frameN  # exact frame index
+                practice_info_display.tStart = t  # local t and not account for scr refresh
+                practice_info_display.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(practice_info_display, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'practice_info_display.started')
+                # update status
+                practice_info_display.status = STARTED
+                practice_info_display.setAutoDraw(True)
+            
+            # if practice_info_display is active this frame...
+            if practice_info_display.status == STARTED:
+                # update params
+                pass
             
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -1392,7 +1456,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         if isinstance(practice_loop, data.TrialHandler2) and thisPractice_loop.thisN != practice_loop.thisTrial.thisN:
             continueRoutine = False
         Feedback_2.forceEnded = routineForceEnded = not continueRoutine
-        while continueRoutine and routineTimer.getTime() < 2.0:
+        while continueRoutine and routineTimer.getTime() < 1.0:
             # get current time
             t = routineTimer.getTime()
             tThisFlip = win.getFutureFlipTime(clock=routineTimer)
@@ -1423,7 +1487,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # if feedback_display_2 is stopping this frame...
             if feedback_display_2.status == STARTED:
                 # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > feedback_display_2.tStartRefresh + 2-frameTolerance:
+                if tThisFlipGlobal > feedback_display_2.tStartRefresh + 1-frameTolerance:
                     # keep track of stop time/frame for later
                     feedback_display_2.tStop = t  # not accounting for scr refresh
                     feedback_display_2.tStopRefresh = tThisFlipGlobal  # on global time
@@ -1479,7 +1543,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         elif Feedback_2.forceEnded:
             routineTimer.reset()
         else:
-            routineTimer.addTime(-2.000000)
+            routineTimer.addTime(-1.000000)
         thisExp.nextEntry()
         
     # completed 1.0 repeats of 'practice_loop'
@@ -1673,7 +1737,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine Main_Task
         Main_Task = data.Routine(
             name='Main_Task',
-            components=[deck_a_image, deck_b_image, deck_c_image, deck_d_image, arrow_image, response_key],
+            components=[deck_a_image, deck_b_image, deck_c_image, deck_d_image, arrow_image, response_key, info_display],
         )
         Main_Task.status = NOT_STARTED
         continueRoutine = True
@@ -1690,6 +1754,10 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         if practice_completed:
             print(f"Before Main Task: Net Worth is {net_worth}")
             practice_completed = False  # Reset the flag
+        
+        # Update the display text to show current total and previous choice
+        info_text = f"جمع پول شما: {(net_worth)}\n\nانتخاب قبلی شما: {(previous_outcome)}"
+        info_display.setText(info_text)  # Update the text component with info_text
         
         # store start times for Main_Task
         Main_Task.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
@@ -1852,6 +1920,26 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     # a response ends the routine
                     continueRoutine = False
             
+            # *info_display* updates
+            
+            # if info_display is starting this frame...
+            if info_display.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+                # keep track of start time/frame for later
+                info_display.frameNStart = frameN  # exact frame index
+                info_display.tStart = t  # local t and not account for scr refresh
+                info_display.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(info_display, 'tStartRefresh')  # time at next scr refresh
+                # add timestamp to datafile
+                thisExp.timestampOnFlip(win, 'info_display.started')
+                # update status
+                info_display.status = STARTED
+                info_display.setAutoDraw(True)
+            
+            # if info_display is active this frame...
+            if info_display.status == STARTED:
+                # update params
+                pass
+            
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
                 thisExp.status = FINISHED
@@ -1926,10 +2014,16 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 chosen_action = 'deck_' + chr(97 + current_position)  # Dynamically select the deck based on arrow position
                 outcome = simulateOutcome(chosen_action, conditions)
                 net_worth += outcome
-                feedback_text = f"شما بازی کردید\n\n نتیجه:  {to_persian_number(outcome)}\n\n  جمع پول شما اکنون:  {to_persian_number(net_worth)}"
+                previous_choice = chosen_action
+                previous_outcome = outcome
+                log_data('main', chosen_action, outcome, net_worth)
+                feedback_text = f"شما بازی کردید\n\n نتیجه:  {(outcome)}\n\n  جمع پول شما اکنون:  {(net_worth)}"
             elif 'j' in response_key.keys:
                 chosen_action = 'pass'
-                feedback_text = f"شما گذشتید\n\n  جمع پول شما اکنون:  {to_persian_number(net_worth)}"
+                previous_choice = chosen_action 
+                previous_outcome = 0
+                log_data('main', chosen_action, 0, net_worth)
+                feedback_text = f"شما بازی نکردید\n\n  جمع پول شما اکنون:  {(net_worth)}"
         
             feedback_display.setText(feedback_text)  # Update the text component with feedback_text
         
@@ -1976,7 +2070,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         if isinstance(loop, data.TrialHandler2) and thisLoop.thisN != loop.thisTrial.thisN:
             continueRoutine = False
         Feedback.forceEnded = routineForceEnded = not continueRoutine
-        while continueRoutine and routineTimer.getTime() < 2.0:
+        while continueRoutine and routineTimer.getTime() < 1.0:
             # get current time
             t = routineTimer.getTime()
             tThisFlip = win.getFutureFlipTime(clock=routineTimer)
@@ -2007,7 +2101,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             # if feedback_display is stopping this frame...
             if feedback_display.status == STARTED:
                 # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > feedback_display.tStartRefresh + 2-frameTolerance:
+                if tThisFlipGlobal > feedback_display.tStartRefresh + 1-frameTolerance:
                     # keep track of stop time/frame for later
                     feedback_display.tStop = t  # not accounting for scr refresh
                     feedback_display.tStopRefresh = tThisFlipGlobal  # on global time
@@ -2063,7 +2157,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         elif Feedback.forceEnded:
             routineTimer.reset()
         else:
-            routineTimer.addTime(-2.000000)
+            routineTimer.addTime(-1.000000)
         thisExp.nextEntry()
         
     # completed 1.0 repeats of 'loop'
@@ -2091,7 +2185,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     continueRoutine = True
     # update component parameters for each repeat
     # Run 'Begin Routine' code from code
-    final_message_text =f"پایان بازی\n\n مبلغ نهایی شما:{to_persian_number(net_worth)} \n\n Parinaz Khosravani \n Farzad Soleimani \n\n برای خروج کلید Esc را فشار دهید."
+    final_message_text =f"پایان بازی\n\n مبلغ نهایی شما:{(net_worth)} \n\nپژوهشگران:\n Parinaz Khosravani \n Farzad Soleimani \n\n برای خروج کلید Esc را فشار دهید."
     final_message.setText(final_message_text)
     # store start times for End
     End.tStartRefresh = win.getFutureFlipTime(clock=globalClock)

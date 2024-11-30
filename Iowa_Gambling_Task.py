@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2024.2.3),
-    on November 17, 2024, at 19:48
+    on November 23, 2024, at 17:58
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -126,7 +126,7 @@ def setupData(expInfo, dataDir=None):
     thisExp = data.ExperimentHandler(
         name=expName, version='',
         extraInfo=expInfo, runtimeInfo=None,
-        originPath='C:\\Users\\SAM-Tech\\Desktop\\Iowa_Gambling_Task_Modified-main\\Iowa_Gambling_Task.py',
+        originPath='C:\\Users\\SAM-Tech\\Desktop\\Iowa_Gambling_Task_Modified\\Iowa_Gambling_Task.py',
         savePickle=True, saveWideText=True,
         dataFileName=dataDir + os.sep + filename, sortColumns='time'
     )
@@ -278,11 +278,11 @@ def setupDevices(expInfo, thisExp, win):
             deviceClass='keyboard',
             deviceName='key_resp_2',
         )
-    if deviceManager.getDevice('response_key_2') is None:
-        # initialise response_key_2
-        response_key_2 = deviceManager.addDevice(
+    if deviceManager.getDevice('practice_response') is None:
+        # initialise practice_response
+        practice_response = deviceManager.addDevice(
             deviceClass='keyboard',
-            deviceName='response_key_2',
+            deviceName='practice_response',
         )
     if deviceManager.getDevice('key_resp_4') is None:
         # initialise key_resp_4
@@ -404,6 +404,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     
     # Begin Experiment
     net_worth = 2000
+    net_worth_practice = 2000
     feedback_text = ""
     final_message_text = ""
     feedback_text_2 = ""
@@ -421,6 +422,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     deck_positions = [(-0.5, 0), (-0.17, 0), (0.17, 0), (0.5, 0)]
     arrow_offset_y = 0.2  # Adjust this value to move the arrow higher
     current_position = random.randint(0, len(deck_positions) - 1)
+    
     instruction_image = visual.ImageStim(
         win=win,
         name='instruction_image', 
@@ -493,7 +495,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         color=[1,1,1], colorSpace='rgb', opacity=None,
         flipHoriz=False, flipVert=False,
         texRes=128.0, interpolate=True, depth=-4.0)
-    response_key_2 = keyboard.Keyboard(deviceName='response_key_2')
+    practice_response = keyboard.Keyboard(deviceName='practice_response')
     # Run 'Begin Experiment' code from arrow_movement_2
     deck_positions = [(-0.5, 0), (-0.17, 0), (0.17, 0), (0.5, 0)]
     current_position = 0
@@ -501,16 +503,20 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     arrow_image_2.pos = (deck_positions[current_position][0], deck_positions[current_position][1] + arrow_offset_y)
     
     
+    # Run 'Begin Experiment' code from code_3
+    net_worth_practice = 2000  # Initialize net worth for practice
+    practice_completed = False  # Flag to check if practice is completed
+    
     
     # --- Initialize components for Routine "Feedback_2" ---
-    feedback_2_display = visual.TextStim(win=win, name='feedback_2_display',
+    feedback_display_2 = visual.TextStim(win=win, name='feedback_display_2',
         text=feedback_text_2
     
     ,
         font='Arial',
-        pos=(0, 0), draggable=False, height=0.05, wrapWidth=None, ori=0.0, 
+        pos=(0, 0), draggable=False, height=0.08, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
-        languageStyle='LTR',
+        languageStyle='Arabic',
         depth=0.0);
     
     # --- Initialize components for Routine "after_practice" ---
@@ -577,7 +583,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
     # --- Initialize components for Routine "Feedback" ---
     feedback_display = visual.TextStim(win=win, name='feedback_display',
         text='',
-        font='B koodak ',
+        font='Arial',
         pos=(0, 0), draggable=False, height=0.08, wrapWidth=None, ori=0.0, 
         color='white', colorSpace='rgb', opacity=None, 
         languageStyle='Arabic',
@@ -1079,22 +1085,23 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine practice_task
         practice_task = data.Routine(
             name='practice_task',
-            components=[deck_a_image_2, deck_b_image_2, deck_c_image_2, deck_d_image_2, arrow_image_2, response_key_2],
+            components=[deck_a_image_2, deck_b_image_2, deck_c_image_2, deck_d_image_2, arrow_image_2, practice_response],
         )
         practice_task.status = NOT_STARTED
         continueRoutine = True
         # update component parameters for each repeat
-        # create starting attributes for response_key_2
-        response_key_2.keys = []
-        response_key_2.rt = []
-        _response_key_2_allKeys = []
+        # create starting attributes for practice_response
+        practice_response.keys = []
+        practice_response.rt = []
+        _practice_response_allKeys = []
         # Run 'Begin Routine' code from arrow_movement_2
         # Set arrow position at the start of each trial
         arrow_image_2.pos = (deck_positions[current_position][0], deck_positions[current_position][1] + arrow_offset_y)
         
         # Run 'Begin Routine' code from code_3
+        # This code runs once at the beginning of the routine
         feedback_text_2 = ''
-        net_worth_practice = 2000  # Initialize net worth for practice
+        
         
         # store start times for practice_task
         practice_task.tStartRefresh = win.getFutureFlipTime(clock=globalClock)
@@ -1229,50 +1236,70 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                 # update params
                 pass
             
-            # *response_key_2* updates
+            # *practice_response* updates
             waitOnFlip = False
             
-            # if response_key_2 is starting this frame...
-            if response_key_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if practice_response is starting this frame...
+            if practice_response.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                response_key_2.frameNStart = frameN  # exact frame index
-                response_key_2.tStart = t  # local t and not account for scr refresh
-                response_key_2.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(response_key_2, 'tStartRefresh')  # time at next scr refresh
+                practice_response.frameNStart = frameN  # exact frame index
+                practice_response.tStart = t  # local t and not account for scr refresh
+                practice_response.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(practice_response, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'response_key_2.started')
+                thisExp.timestampOnFlip(win, 'practice_response.started')
                 # update status
-                response_key_2.status = STARTED
+                practice_response.status = STARTED
                 # keyboard checking is just starting
                 waitOnFlip = True
-                win.callOnFlip(response_key_2.clock.reset)  # t=0 on next screen flip
-                win.callOnFlip(response_key_2.clearEvents, eventType='keyboard')  # clear events on next screen flip
-            if response_key_2.status == STARTED and not waitOnFlip:
-                theseKeys = response_key_2.getKeys(keyList=['f','j'], ignoreKeys=["escape"], waitRelease=False)
-                _response_key_2_allKeys.extend(theseKeys)
-                if len(_response_key_2_allKeys):
-                    response_key_2.keys = _response_key_2_allKeys[-1].name  # just the last key pressed
-                    response_key_2.rt = _response_key_2_allKeys[-1].rt
-                    response_key_2.duration = _response_key_2_allKeys[-1].duration
+                win.callOnFlip(practice_response.clock.reset)  # t=0 on next screen flip
+                win.callOnFlip(practice_response.clearEvents, eventType='keyboard')  # clear events on next screen flip
+            if practice_response.status == STARTED and not waitOnFlip:
+                theseKeys = practice_response.getKeys(keyList=['f','j'], ignoreKeys=["escape"], waitRelease=False)
+                _practice_response_allKeys.extend(theseKeys)
+                if len(_practice_response_allKeys):
+                    practice_response.keys = _practice_response_allKeys[-1].name  # just the last key pressed
+                    practice_response.rt = _practice_response_allKeys[-1].rt
+                    practice_response.duration = _practice_response_allKeys[-1].duration
                     # a response ends the routine
                     continueRoutine = False
             # Run 'Each Frame' code from code_3
-            if response_key_2.keys:
-                if 'f' in response_key_2.keys :
+            conditions = {
+                'deck_a_2': {'Reward': 100, 'Penalty': -250},
+                'deck_b_2': {'Reward': 100, 'Penalty': -1150},
+                'deck_c_2': {'Reward': 50, 'Penalty': -25},
+                'deck_d_2': {'Reward': 50, 'Penalty': -200},
+            }
+            def to_persian_number(number):
+                english_to_persian = {
+                    '0': '۰', '1': '۱', '2': '۲', '3': '۳', '4': '۴',
+                    '5': '۵', '6': '۶', '7': '۷', '8': '۸', '9': '۹'
+                }
+            
+            
+            if practice_response.keys:
+                if 'f' in practice_response.keys:
                     chosen_action = 'deck_' + chr(97 + current_position) + '_2'  # Dynamically select the deck based on arrow position
+                    print(f"Chosen Action: {chosen_action}")
                     outcome = simulateOutcome(chosen_action, conditions)
+                    print(f"Outcome: {outcome}")
                     net_worth_practice += outcome
-                    feedback_text_2 = f"شما بازی کردید\n\n نتیجه:  {to_persian_number(outcome)}\n\n  جمع پول شما اکنون:  {to_persian_number(net_worth_practice)}"
-                elif 'j' in response_key_2.keys:
+                    print(f"Net Worth Practice: {net_worth_practice}")
+                    feedback_text_2 = f"شما بازی کردید\n\n نتیجه:  {(outcome)}\n\n  جمع پول شما اکنون:  {(net_worth_practice)}"
+                elif 'j' in practice_response.keys:
                     chosen_action = 'pass'
-                    feedback_text_2 = f"شما گذشتید\n\n  جمع پول شما اکنون:  {to_persian_number(net_worth_practice)}"
+                    feedback_text_2 = f"شما گذشتید\n\n  جمع پول شما اکنون:  {(net_worth_practice)}"
             
                 feedback_display_2.setText(feedback_text_2)  # Update the text component with feedback_text_2
+                print(f"Feedback Text: {feedback_text_2}")
             
                 # Randomly move the arrow to a new position for the next trial
                 current_position = random.randint(0, len(deck_positions) - 1)
                 
                 continueRoutine = False  # End the routine after making a choice
+            
+            
+            
             
             
             # check for quit (typically the Esc key)
@@ -1315,17 +1342,18 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         practice_task.tStopRefresh = tThisFlipGlobal
         thisExp.addData('practice_task.stopped', practice_task.tStop)
         # check responses
-        if response_key_2.keys in ['', [], None]:  # No response was made
-            response_key_2.keys = None
-        practice_loop.addData('response_key_2.keys',response_key_2.keys)
-        if response_key_2.keys != None:  # we had a response
-            practice_loop.addData('response_key_2.rt', response_key_2.rt)
-            practice_loop.addData('response_key_2.duration', response_key_2.duration)
+        if practice_response.keys in ['', [], None]:  # No response was made
+            practice_response.keys = None
+        practice_loop.addData('practice_response.keys',practice_response.keys)
+        if practice_response.keys != None:  # we had a response
+            practice_loop.addData('practice_response.rt', practice_response.rt)
+            practice_loop.addData('practice_response.duration', practice_response.duration)
         # Run 'End Routine' code from code_3
         # Check if it’s the last practice trial
         if practice_loop.thisN == practice_loop.nTotal - 1:
             net_worth = 2000  # Reset net worth to 2000 after practice
             practice_completed = True  # Set the flag to indicate practice is completed
+            print(f"End of Practice Loop: Net Worth Reset to {net_worth}")
         
         # the Routine "practice_task" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
@@ -1334,7 +1362,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         # create an object to store info about Routine Feedback_2
         Feedback_2 = data.Routine(
             name='Feedback_2',
-            components=[feedback_2_display],
+            components=[feedback_display_2],
         )
         Feedback_2.status = NOT_STARTED
         continueRoutine = True
@@ -1372,39 +1400,39 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
             frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
             # update/draw components on each frame
             
-            # *feedback_2_display* updates
+            # *feedback_display_2* updates
             
-            # if feedback_2_display is starting this frame...
-            if feedback_2_display.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # if feedback_display_2 is starting this frame...
+            if feedback_display_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                feedback_2_display.frameNStart = frameN  # exact frame index
-                feedback_2_display.tStart = t  # local t and not account for scr refresh
-                feedback_2_display.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(feedback_2_display, 'tStartRefresh')  # time at next scr refresh
+                feedback_display_2.frameNStart = frameN  # exact frame index
+                feedback_display_2.tStart = t  # local t and not account for scr refresh
+                feedback_display_2.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(feedback_display_2, 'tStartRefresh')  # time at next scr refresh
                 # add timestamp to datafile
-                thisExp.timestampOnFlip(win, 'feedback_2_display.started')
+                thisExp.timestampOnFlip(win, 'feedback_display_2.started')
                 # update status
-                feedback_2_display.status = STARTED
-                feedback_2_display.setAutoDraw(True)
+                feedback_display_2.status = STARTED
+                feedback_display_2.setAutoDraw(True)
             
-            # if feedback_2_display is active this frame...
-            if feedback_2_display.status == STARTED:
+            # if feedback_display_2 is active this frame...
+            if feedback_display_2.status == STARTED:
                 # update params
                 pass
             
-            # if feedback_2_display is stopping this frame...
-            if feedback_2_display.status == STARTED:
+            # if feedback_display_2 is stopping this frame...
+            if feedback_display_2.status == STARTED:
                 # is it time to stop? (based on global clock, using actual start)
-                if tThisFlipGlobal > feedback_2_display.tStartRefresh + 2-frameTolerance:
+                if tThisFlipGlobal > feedback_display_2.tStartRefresh + 2-frameTolerance:
                     # keep track of stop time/frame for later
-                    feedback_2_display.tStop = t  # not accounting for scr refresh
-                    feedback_2_display.tStopRefresh = tThisFlipGlobal  # on global time
-                    feedback_2_display.frameNStop = frameN  # exact frame index
+                    feedback_display_2.tStop = t  # not accounting for scr refresh
+                    feedback_display_2.tStopRefresh = tThisFlipGlobal  # on global time
+                    feedback_display_2.frameNStop = frameN  # exact frame index
                     # add timestamp to datafile
-                    thisExp.timestampOnFlip(win, 'feedback_2_display.stopped')
+                    thisExp.timestampOnFlip(win, 'feedback_display_2.stopped')
                     # update status
-                    feedback_2_display.status = FINISHED
-                    feedback_2_display.setAutoDraw(False)
+                    feedback_display_2.status = FINISHED
+                    feedback_display_2.setAutoDraw(False)
             
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
@@ -1660,7 +1688,7 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
         _response_key_allKeys = []
         # Run 'Begin Routine' code from code_2
         if practice_completed:
-            net_worth = 2000  # Ensure net worth is reset to 2000 at the start of the main task
+            print(f"Before Main Task: Net Worth is {net_worth}")
             practice_completed = False  # Reset the flag
         
         # store start times for Main_Task
@@ -1823,24 +1851,6 @@ def run(expInfo, thisExp, win, globalClock=None, thisSession=None):
                     response_key.duration = _response_key_allKeys[-1].duration
                     # a response ends the routine
                     continueRoutine = False
-            # Run 'Each Frame' code from code_2
-            if response_key.keys:
-                if 'f' in response_key.keys:
-                    chosen_action = 'deck_' + chr(97 + current_position)  # Dynamically select the deck based on arrow position
-                    outcome = simulateOutcome(chosen_action, conditions)
-                    net_worth += outcome
-                    feedback_text = f"شما بازی کردید\n\n نتیجه:  {to_persian_number(outcome)}\n\n  جمع پول شما اکنون:  {to_persian_number(net_worth)}"
-                elif 'j' in response_key.keys:
-                    chosen_action = 'pass'
-                    feedback_text = f"شما گذشتید\n\n  جمع پول شما اکنون:  {to_persian_number(net_worth)}"
-            
-                feedback_display.setText(feedback_text)  # Update the text component with feedback_text
-            
-                # Randomly move the arrow to a new position for the next trial
-                current_position = random.randint(0, len(deck_positions) - 1)
-                
-                continueRoutine = False  # End the routine after making a choice
-            
             
             # check for quit (typically the Esc key)
             if defaultKeyboard.getKeys(keyList=["escape"]):
