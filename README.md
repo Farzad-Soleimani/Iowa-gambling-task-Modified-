@@ -49,7 +49,9 @@ Reference
 This task is based on the original Iowa Gambling Task paradigm as described in:
 Bechara A., Damasio A. R., Damasio H., Anderson S. W. (1994). Insensitivity to future consequences following damage to human prefrontal cortex. Cognition, 50, 7-15.
 
-The modifications and Persian localization included in this repository are original contributions by Farzad Soleimani and Parinaz Khosravani.
+The modifications and Persian localization included in this repository are original contributions by:
+ - **Farzad Soleimani**  Farzad-Soleimani
+- **Parinaz Khosravani**  Parinaz-kh
 
 License
 ======================
